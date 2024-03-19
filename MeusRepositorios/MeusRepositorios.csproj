@@ -9,10 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="App\Forms\" />
     <Folder Include="App\Resources\" />
     <Folder Include="Tests\" />
-    <Folder Include="Ultils\" />
   </ItemGroup>
 
   <ItemGroup>
