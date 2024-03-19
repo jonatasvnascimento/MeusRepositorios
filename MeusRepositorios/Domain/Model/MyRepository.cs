@@ -9,10 +9,10 @@ namespace MeusRepositorios.Domain.Model
     public class MyRepository
     {
         public int Id { get; set; }
-        public required string Name { get; set; }
+        public required string Nome { get; set; }
         public required string Descricao { get; set; }
-        public required string Linquagem { get; set; }
+        public required string Linguagem { get; set; }
         public DateTime DataAtualizacao { get; set; }
-        public DateTime DonoRepositorio { get; set; }
+        public string DonoRepositorio { get; set; }
     }
 }

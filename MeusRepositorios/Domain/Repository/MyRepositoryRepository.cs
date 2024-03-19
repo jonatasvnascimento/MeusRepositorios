@@ -15,7 +15,7 @@ namespace MeusRepositorios.Domain.Repository
 
         public IQueryable<MyRepository> Get()
         {
-            return _context.MyRepositories.AsQueryable();
+            return _context.MyRepository.AsQueryable();
         }
 
         public void Dispose()
