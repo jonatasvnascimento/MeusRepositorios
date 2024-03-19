@@ -90,7 +90,11 @@ namespace MeusRepositorios
             this.panelDesktopPane.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
-            lblTitle.Text = childForm.Text;
+
+            string formName = childForm.Text;
+            string desiredPart = formName.Substring(4);
+            lblTitle.Text = desiredPart;
+
         }
 
 

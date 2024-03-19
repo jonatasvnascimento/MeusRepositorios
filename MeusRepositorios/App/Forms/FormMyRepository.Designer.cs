@@ -35,7 +35,7 @@
             // 
             button1.Location = new Point(357, 142);
             button1.Name = "button1";
-            button1.Size = new Size(75, 23);
+            button1.Size = new Size(172, 82);
             button1.TabIndex = 0;
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
@@ -44,8 +44,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(51, 51, 76);
             ClientSize = new Size(800, 450);
             Controls.Add(button1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormMyRepository";
             Text = "FormMyRepository";
             ResumeLayout(false);
