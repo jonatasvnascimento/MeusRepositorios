@@ -3,6 +3,7 @@ using MeusRepositorios.Service.Interface;
 using MeusRepositorios.Service.Services;
 using MeusRepositorios.Ultils;
 using System.Runtime.InteropServices;
+using System.Xml;
 
 namespace MeusRepositorios
 {
@@ -20,6 +21,9 @@ namespace MeusRepositorios
         {
             InitializeComponent();
             _myRepositoryService = new MyRepositoryService();
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            //this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
         }
 
         private void FormInicial_Load(object sender, EventArgs e)
@@ -98,6 +102,34 @@ namespace MeusRepositorios
         private void btnFavorites_Click(object sender, EventArgs e)
         {
             OpenChildForm(new App.Forms.FormFavorites(), sender);
+        }
+
+        private void panelTitleBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMaximaze_Click(object sender, EventArgs e)
+        {
+            if (WindowState == FormWindowState.Normal)
+            {
+                this.WindowState = FormWindowState.Maximized;
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Normal;
+            }
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
