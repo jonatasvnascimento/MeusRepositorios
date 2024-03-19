@@ -1,5 +1,6 @@
 ﻿using MeusRepositorios.Domain.Interface;
 using MeusRepositorios.Domain.Model;
+using MeusRepositorios.Domain.Repository;
 using MeusRepositorios.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -11,10 +12,11 @@ namespace MeusRepositorios.Service.Services
 {
     public class MyRepositoryService : IMyRepositoryService
     {
-        private readonly IMyRepository _myRepository;
+        private readonly MyRepositoryRepository _myRepositoryRepository = new MyRepositoryRepository();
+
         public IQueryable<MyRepository> Get()
         {
-            return _myRepository.Get();
+            return _myRepositoryRepository.Get();
         }
     }
 }

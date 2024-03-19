@@ -9,10 +9,18 @@ using System.Threading.Tasks;
 
 namespace MeusRepositorios.Domain.Repository
 {
-    public class MyRepositoryRepository : Repository<MyRepository>, IMyRepository
+    public class MyRepositoryRepository : IDisposable
     {
-        public MyRepositoryRepository(AppDbContext contexto) : base(contexto)
+        AppDbContext _context = new AppDbContext();
+
+        public IQueryable<MyRepository> Get()
         {
+            return _context.MyRepositories.AsQueryable();
+        }
+
+        public void Dispose()
+        {
+            GC.SuppressFinalize(this);
         }
     }
 }
