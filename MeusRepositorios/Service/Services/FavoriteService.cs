@@ -1,5 +1,6 @@
 ﻿using MeusRepositorios.Domain.Interface;
 using MeusRepositorios.Domain.Model;
+using MeusRepositorios.Domain.Repository;
 using MeusRepositorios.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace MeusRepositorios.Service.Services
 {
     public class FavoriteService : IFavoriteService
     {
-        private readonly IFavoriteRepository _favoriteRepository;
+        private readonly FavoriteRepository _favoriteRepository = new FavoriteRepository();
         public IQueryable<Favorite> Get()
         {
             return _favoriteRepository.Get();

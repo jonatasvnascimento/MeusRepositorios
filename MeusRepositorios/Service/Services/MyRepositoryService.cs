@@ -26,11 +26,15 @@ namespace MeusRepositorios.Service.Services
 
         public bool SaveOrUpdateMyRepository(MyRepository myRepository)
         {
-            Favorite favoriteOBJ = new Favorite()
+
+        Favorite favoriteOBJ = new Favorite()
             {
                 MyRepositortId = myRepository.Id,
                 Nome = myRepository.Nome,
-                DataAtualizacao = myRepository.DataAtualizacao
+                Descricao = myRepository.Descricao,
+                Linguagem = myRepository.Linguagem,
+                DataAtualizacao = myRepository.DataAtualizacao,
+                DonoRepositorio = myRepository.DonoRepositorio
             };
 
             return _myRepositoryRepository.SaveOrUpdateMyRepository(myRepository, favoriteOBJ);
