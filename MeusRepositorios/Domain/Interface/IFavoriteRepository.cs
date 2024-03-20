@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace MeusRepositorios.Domain.Interface
 {
-    public interface IMyRepository
+    public interface IFavoriteRepository
     {
-        IQueryable<MyRepository> Get();
-        bool SaveOrUpdateMyRepository(MyRepository myRepository, Favorite favorite);
-        bool DeleteAll();
+        IQueryable<Favorite> Get();
+        bool SaveOrUpdateFavorite(Favorite myRepository);
     }
 }

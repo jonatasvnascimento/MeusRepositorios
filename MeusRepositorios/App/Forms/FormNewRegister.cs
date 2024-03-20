@@ -1,4 +1,5 @@
 ﻿using MeusRepositorios.Domain.Model;
+using MeusRepositorios.Service.Interface;
 using MeusRepositorios.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -14,12 +15,14 @@ namespace MeusRepositorios.App.Forms
 {
     public partial class FormNewRegister : Form
     {
-        private MyRepositoryService _myRepositoryService;
-        private bool _isCreate { get; set;}
+        private readonly MyRepositoryService _myRepositoryService;
+        private readonly FavoriteService _favoriteService;
+        private bool _isCreate { get; set; }
         public FormNewRegister(bool isCreate = true)
         {
             InitializeComponent();
             _myRepositoryService = new MyRepositoryService();
+            _favoriteService = new FavoriteService();
             _isCreate = isCreate;
         }
 
@@ -39,7 +42,8 @@ namespace MeusRepositorios.App.Forms
                 Descricao = txtDescricao.Text,
                 Linguagem = txtLinguagem.Text,
                 DataAtualizacao = dtDataAtualizacao.Value,
-                DonoRepositorio = txtDonoRepositorio.Text
+                DonoRepositorio = txtDonoRepositorio.Text,
+                isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false
             });
 
             if (retData)
@@ -58,6 +62,6 @@ namespace MeusRepositorios.App.Forms
             this.Close();
         }
 
-        
+
     }
 }

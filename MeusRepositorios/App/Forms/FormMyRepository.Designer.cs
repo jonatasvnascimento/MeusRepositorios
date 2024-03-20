@@ -32,7 +32,7 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            textBox1 = new TextBox();
+            txtFind = new TextBox();
             btnCreate = new Button();
             dgvRepository = new DataGridView();
             Id = new DataGridViewTextBoxColumn();
@@ -45,14 +45,16 @@
             ((System.ComponentModel.ISupportInitialize)dgvRepository).BeginInit();
             SuspendLayout();
             // 
-            // textBox1
+            // txtFind
             // 
-            textBox1.BorderStyle = BorderStyle.FixedSingle;
-            textBox1.Location = new Point(12, 12);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(816, 40);
-            textBox1.TabIndex = 1;
+            txtFind.BorderStyle = BorderStyle.FixedSingle;
+            txtFind.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
+            txtFind.Location = new Point(12, 12);
+            txtFind.Multiline = true;
+            txtFind.Name = "txtFind";
+            txtFind.Size = new Size(816, 40);
+            txtFind.TabIndex = 1;
+            txtFind.TextChanged += tbxFind_TextChanged;
             // 
             // btnCreate
             // 
@@ -183,7 +185,7 @@
             Controls.Add(dgvRepository);
             Controls.Add(btnCreate);
             Controls.Add(btnDeleteAll);
-            Controls.Add(textBox1);
+            Controls.Add(txtFind);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormMyRepository";
             Text = "FormMyRepository";
@@ -194,7 +196,7 @@
         }
 
         #endregion
-        private TextBox textBox1;
+        private TextBox txtFind;
         private Button btnCreate;
         private DataGridView dgvRepository;
         private Button btnDeleteAll;

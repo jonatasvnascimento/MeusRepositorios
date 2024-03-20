@@ -27,9 +27,16 @@ namespace MeusRepositorios.App.Forms
             LoadRepository();
         }
 
-        private void LoadRepository()
+        private void LoadRepository(string find = "")
         {
-            myRepository = _myRepositoryService.Get().ToList();
+            if (!string.IsNullOrEmpty(find))
+            {
+                myRepository = _myRepositoryService.Get().Where(x => x.Nome.ToUpper().Contains(find.ToUpper())).ToList();
+            }
+            else
+            {
+                myRepository = _myRepositoryService.Get().ToList();
+            }
 
             dgvRepository.Columns["Id"].DataPropertyName = "Id";
             dgvRepository.Columns["Nome"].DataPropertyName = "Nome";
@@ -78,6 +85,11 @@ namespace MeusRepositorios.App.Forms
                 LoadRepository();
             }
 
+        }
+
+        private void tbxFind_TextChanged(object sender, EventArgs e)
+        {
+            LoadRepository(txtFind.Text);
         }
     }
 }

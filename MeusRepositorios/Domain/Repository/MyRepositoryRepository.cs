@@ -23,7 +23,7 @@ namespace MeusRepositorios.Domain.Repository
             GC.SuppressFinalize(this);
         }
 
-        public bool SaveOrUpdateMyRepository(MyRepository myRepository)
+        public bool SaveOrUpdateMyRepository(MyRepository myRepository, Favorite favorite)
         {
             bool result = false;
 
@@ -31,15 +31,30 @@ namespace MeusRepositorios.Domain.Repository
             {
                 try
                 {
-                    var exist = _context.MyRepository.Where(x => x.Id == myRepository.Id).FirstOrDefault();
+                    var existMyRepository = _context.MyRepository.Where(x => x.Id == myRepository.Id).FirstOrDefault();
+                    var existFavorite = _context.Favorite.Where(x => x.MyRepositortId == favorite.MyRepositortId).FirstOrDefault();
 
-                    if (exist != null)
+                    if (existMyRepository != null)
+                        _context.MyRepository.Entry(existMyRepository).CurrentValues.SetValues(myRepository);
+                    else
+                        _context.MyRepository.Add(myRepository);
+
+                    _context.SaveChanges();
+
+                    if (existFavorite != null)
                     {
-                        _context.MyRepository.Entry(exist).CurrentValues.SetValues(myRepository);
+                        if (!myRepository.isFavorite)
+                        {
+                            _context.Favorite.Remove(favorite);
+                        }
                     }
                     else
                     {
-                        _context.MyRepository.Add(myRepository);
+                        if (myRepository.isFavorite)
+                        {
+                            favorite.MyRepositortId = myRepository.Id;
+                            _context.Favorite.Add(favorite);
+                        }
                     }
 
                     _context.SaveChanges();
@@ -63,9 +78,11 @@ namespace MeusRepositorios.Domain.Repository
             {
                 try
                 {
-                    var allRecords = _context.MyRepository.ToList();
+                    var allRecordsMyRepository = _context.MyRepository.ToList();
+                    var allRecordsFavorite = _context.Favorite.ToList();
 
-                    _context.MyRepository.RemoveRange(allRecords);
+                    _context.MyRepository.RemoveRange(allRecordsMyRepository);
+                    _context.Favorite.RemoveRange(allRecordsFavorite);
 
                     _context.SaveChanges();
                     dbContextTransaction.Commit();

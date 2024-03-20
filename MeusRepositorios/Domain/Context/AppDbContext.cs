@@ -24,6 +24,7 @@ namespace MeusRepositorios.Domain.Context
         }
 
         public DbSet<MyRepository> MyRepository { get; set; }
+        public DbSet<Favorite> Favorite { get; set; }
 
 
     }
