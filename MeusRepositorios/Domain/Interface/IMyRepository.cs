@@ -12,5 +12,7 @@ namespace MeusRepositorios.Domain.Interface
         IQueryable<MyRepository> Get();
         bool SaveOrUpdateMyRepository(MyRepository myRepository, Favorite favorite);
         bool DeleteAll();
+        MyRepository GetById(int idRepository);
+
     }
 }

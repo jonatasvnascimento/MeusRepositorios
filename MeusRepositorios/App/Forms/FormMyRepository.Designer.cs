@@ -41,6 +41,7 @@
             Linguagem = new DataGridViewTextBoxColumn();
             DataAtualizacao = new DataGridViewTextBoxColumn();
             DonoRepositorio = new DataGridViewTextBoxColumn();
+            Acao = new DataGridViewButtonColumn();
             btnDeleteAll = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvRepository).BeginInit();
             SuspendLayout();
@@ -89,7 +90,7 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             dgvRepository.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvRepository.ColumnHeadersHeight = 40;
-            dgvRepository.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Descricao, Linguagem, DataAtualizacao, DonoRepositorio });
+            dgvRepository.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Descricao, Linguagem, DataAtualizacao, DonoRepositorio, Acao });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = SystemColors.Window;
             dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
@@ -115,6 +116,7 @@
             dgvRepository.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRepository.Size = new Size(1066, 604);
             dgvRepository.TabIndex = 4;
+            dgvRepository.CellDoubleClick += dgvRepository_CellDoubleClick;
             // 
             // Id
             // 
@@ -163,6 +165,15 @@
             DonoRepositorio.ReadOnly = true;
             DonoRepositorio.Width = 182;
             // 
+            // Acao
+            // 
+            Acao.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            Acao.FillWeight = 60F;
+            Acao.HeaderText = "Ação";
+            Acao.Name = "Acao";
+            Acao.ReadOnly = true;
+            Acao.Width = 60;
+            // 
             // btnDeleteAll
             // 
             btnDeleteAll.BackColor = Color.White;
@@ -206,5 +217,6 @@
         private DataGridViewTextBoxColumn Linguagem;
         private DataGridViewTextBoxColumn DataAtualizacao;
         private DataGridViewTextBoxColumn DonoRepositorio;
+        private DataGridViewButtonColumn Acao;
     }
 }

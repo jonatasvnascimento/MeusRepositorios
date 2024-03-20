@@ -46,7 +46,7 @@ namespace MeusRepositorios.Domain.Repository
                     dbContextTransaction.Commit();
                     result = true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     dbContextTransaction.Rollback();
                     result = false;

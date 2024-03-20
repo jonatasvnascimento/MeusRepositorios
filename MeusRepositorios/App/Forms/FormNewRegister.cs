@@ -18,12 +18,15 @@ namespace MeusRepositorios.App.Forms
         private readonly MyRepositoryService _myRepositoryService;
         private readonly FavoriteService _favoriteService;
         private bool _isCreate { get; set; }
-        public FormNewRegister(bool isCreate = true)
+        private int _idRepository { get; set; }
+        private MyRepository MyRepository { get; set; }
+        public FormNewRegister(bool isCreate = true, int idRepository = -1)
         {
             InitializeComponent();
             _myRepositoryService = new MyRepositoryService();
             _favoriteService = new FavoriteService();
             _isCreate = isCreate;
+            _idRepository = idRepository;
         }
 
         private void FormNewRegister_Load(object sender, EventArgs e)
@@ -32,19 +35,50 @@ namespace MeusRepositorios.App.Forms
             {
                 dtDataAtualizacao.Enabled = false;
             }
+            else
+            {
+                LoadRepository();
+            }
+        }
+
+        private void LoadRepository()
+        {
+            MyRepository = _myRepositoryService.GetById(_idRepository);
+
+            if (MyRepository != null)
+            {
+                txtNome.Text = MyRepository.Nome;
+                txtDescricao.Text = MyRepository.Descricao;
+                txtLinguagem.Text = MyRepository.Linguagem;
+                dtDataAtualizacao.Value = MyRepository.DataAtualizacao;
+                txtDonoRepositorio.Text = MyRepository.DonoRepositorio;
+                cbFavorito.CheckState = _favoriteService.Get().Any(x => x.MyRepositoryId == MyRepository.Id) == true ? CheckState.Checked : CheckState.Unchecked;
+            }
         }
 
         private void btnSalve_Click(object sender, EventArgs e)
         {
-            var retData = _myRepositoryService.SaveOrUpdateMyRepository(new MyRepository
+            MyRepository myRepository;
+            if (_isCreate)
             {
-                Nome = txtNome.Text,
-                Descricao = txtDescricao.Text,
-                Linguagem = txtLinguagem.Text,
-                DataAtualizacao = dtDataAtualizacao.Value,
-                DonoRepositorio = txtDonoRepositorio.Text,
-                isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false
-            });
+                myRepository = new MyRepository()
+                {
+                    Nome = txtNome.Text,
+                    Descricao = txtDescricao.Text,
+                    Linguagem = txtLinguagem.Text,
+                    DataAtualizacao = dtDataAtualizacao.Value,
+                    DonoRepositorio = txtDonoRepositorio.Text,
+                    isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false
+                };
+            }
+            else
+            {
+                myRepository = MyRepository;
+                myRepository.isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false;
+                myRepository.DataAtualizacao = DateTime.Now;
+            }
+
+            var retData = _myRepositoryService.SaveOrUpdateMyRepository(myRepository);
 
             if (retData)
             {

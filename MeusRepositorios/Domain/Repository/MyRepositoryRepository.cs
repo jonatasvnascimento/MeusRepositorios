@@ -31,28 +31,35 @@ namespace MeusRepositorios.Domain.Repository
             {
                 try
                 {
-                    var existMyRepository = _context.MyRepository.Where(x => x.Id == myRepository.Id).FirstOrDefault();
-                    var existFavorite = _context.Favorite.Where(x => x.MyRepositortId == favorite.MyRepositortId).FirstOrDefault();
+                    var existMyRepository = _context.MyRepository.FirstOrDefault(x => x.Id == myRepository.Id);
 
                     if (existMyRepository != null)
-                        _context.MyRepository.Entry(existMyRepository).CurrentValues.SetValues(myRepository);
-                    else
-                        _context.MyRepository.Add(myRepository);
-
-                    _context.SaveChanges();
-
-                    if (existFavorite != null)
                     {
-                        if (!myRepository.isFavorite)
+                        _context.Entry(existMyRepository).CurrentValues.SetValues(myRepository);
+                    }
+                    else
+                    {
+                        _context.MyRepository.Add(myRepository);
+                    }
+
+                    if (!myRepository.isFavorite)
+                    {
+                        var existingFavorite = _context.Favorite.FirstOrDefault(x => x.MyRepositoryId == myRepository.Id);
+                        if (existingFavorite != null)
                         {
-                            _context.Favorite.Remove(favorite);
+                            _context.Favorite.Remove(existingFavorite);
                         }
                     }
                     else
                     {
-                        if (myRepository.isFavorite)
+                        var existingFavorite = _context.Favorite.FirstOrDefault(x => x.MyRepositoryId == myRepository.Id);
+                        if (existingFavorite != null)
                         {
-                            favorite.MyRepositortId = myRepository.Id;
+                            _context.Entry(existingFavorite).CurrentValues.SetValues(favorite);
+                        }
+                        else
+                        {
+                            favorite.MyRepositoryId = myRepository.Id;
                             _context.Favorite.Add(favorite);
                         }
                     }
@@ -69,6 +76,7 @@ namespace MeusRepositorios.Domain.Repository
             }
             return result;
         }
+
 
         public bool DeleteAll()
         {
@@ -88,13 +96,18 @@ namespace MeusRepositorios.Domain.Repository
                     dbContextTransaction.Commit();
                     result = true;
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
                     dbContextTransaction.Rollback();
                     result = false;
                 }
             }
             return result;
+        }
+
+        public MyRepository GetById(int idRepository)
+        {
+            return _context.MyRepository.Where(x => x.Id == idRepository).FirstOrDefault();
         }
     }
 }

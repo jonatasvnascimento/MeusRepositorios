@@ -24,12 +24,16 @@ namespace MeusRepositorios.Service.Services
             return _myRepositoryRepository.Get();
         }
 
+        public MyRepository GetById(int idRepository)
+        {
+            return _myRepositoryRepository.GetById(idRepository);
+        }
+
         public bool SaveOrUpdateMyRepository(MyRepository myRepository)
         {
-
-        Favorite favoriteOBJ = new Favorite()
+            Favorite favoriteOBJ = new Favorite()
             {
-                MyRepositortId = myRepository.Id,
+                MyRepositoryId = myRepository.Id,
                 Nome = myRepository.Nome,
                 Descricao = myRepository.Descricao,
                 Linguagem = myRepository.Linguagem,

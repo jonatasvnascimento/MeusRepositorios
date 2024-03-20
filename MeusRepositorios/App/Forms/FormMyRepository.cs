@@ -91,5 +91,18 @@ namespace MeusRepositorios.App.Forms
         {
             LoadRepository(txtFind.Text);
         }
+
+        private void dgvRepository_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1) return;
+
+            var t = dgvRepository.Rows[e.RowIndex].Cells[0].Value;
+
+            int idRepository = 1;
+
+            FormNewRegister formNewRegister = new FormNewRegister(false, idRepository);
+            formNewRegister.ShowDialog();
+            LoadRepository();
+        }
     }
 }
