@@ -53,7 +53,7 @@
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(233, 782);
+            panelMenu.Size = new Size(233, 781);
             panelMenu.TabIndex = 0;
             // 
             // btnFavorites
@@ -117,7 +117,7 @@
             panelTitleBar.Dock = DockStyle.Top;
             panelTitleBar.Location = new Point(233, 0);
             panelTitleBar.Name = "panelTitleBar";
-            panelTitleBar.Size = new Size(873, 106);
+            panelTitleBar.Size = new Size(1090, 106);
             panelTitleBar.TabIndex = 1;
             panelTitleBar.MouseDown += panelTitleBar_MouseDown;
             // 
@@ -130,7 +130,7 @@
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.Font = new Font("Calibri Light", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(840, 5);
+            btnClose.Location = new Point(1057, 5);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(30, 30);
             btnClose.TabIndex = 3;
@@ -146,7 +146,7 @@
             btnMinimize.FlatStyle = FlatStyle.Flat;
             btnMinimize.Font = new Font("Calibri Light", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnMinimize.ForeColor = Color.White;
-            btnMinimize.Location = new Point(768, 5);
+            btnMinimize.Location = new Point(985, 5);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.Size = new Size(30, 30);
             btnMinimize.TabIndex = 2;
@@ -162,7 +162,7 @@
             btnMaximaze.FlatStyle = FlatStyle.Flat;
             btnMaximaze.Font = new Font("Calibri Light", 15F, FontStyle.Regular, GraphicsUnit.Point);
             btnMaximaze.ForeColor = Color.White;
-            btnMaximaze.Location = new Point(804, 5);
+            btnMaximaze.Location = new Point(1021, 5);
             btnMaximaze.Name = "btnMaximaze";
             btnMaximaze.Size = new Size(30, 30);
             btnMaximaze.TabIndex = 1;
@@ -175,7 +175,7 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(379, 39);
+            lblTitle.Location = new Point(488, 39);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(68, 24);
             lblTitle.TabIndex = 0;
@@ -186,15 +186,15 @@
             panelDesktopPane.Dock = DockStyle.Fill;
             panelDesktopPane.Location = new Point(233, 106);
             panelDesktopPane.Name = "panelDesktopPane";
-            panelDesktopPane.Size = new Size(873, 676);
+            panelDesktopPane.Size = new Size(1090, 675);
             panelDesktopPane.TabIndex = 2;
             // 
             // FormInicial
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(1106, 782);
+            BackColor = Color.FromArgb(76, 76, 114);
+            ClientSize = new Size(1323, 781);
             Controls.Add(panelDesktopPane);
             Controls.Add(panelTitleBar);
             Controls.Add(panelMenu);

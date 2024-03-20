@@ -28,33 +28,178 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            textBox1 = new TextBox();
+            btnCreate = new Button();
+            dgvRepository = new DataGridView();
+            btnDeleteAll = new Button();
+            Id = new DataGridViewTextBoxColumn();
+            Nome = new DataGridViewTextBoxColumn();
+            Descricao = new DataGridViewTextBoxColumn();
+            Linguagem = new DataGridViewTextBoxColumn();
+            DataAtualizacao = new DataGridViewTextBoxColumn();
+            DonoRepositorio = new DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)dgvRepository).BeginInit();
             SuspendLayout();
             // 
-            // button1
+            // textBox1
             // 
-            button1.Location = new Point(357, 142);
-            button1.Name = "button1";
-            button1.Size = new Size(172, 82);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            textBox1.Location = new Point(12, 12);
+            textBox1.Multiline = true;
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(816, 40);
+            textBox1.TabIndex = 1;
+            // 
+            // btnCreate
+            // 
+            btnCreate.BackColor = Color.White;
+            btnCreate.FlatStyle = FlatStyle.Flat;
+            btnCreate.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCreate.Location = new Point(834, 12);
+            btnCreate.Name = "btnCreate";
+            btnCreate.Size = new Size(118, 40);
+            btnCreate.TabIndex = 3;
+            btnCreate.Text = "Novo Registro";
+            btnCreate.UseVisualStyleBackColor = false;
+            // 
+            // dgvRepository
+            // 
+            dgvRepository.AllowUserToAddRows = false;
+            dgvRepository.AllowUserToDeleteRows = false;
+            dgvRepository.AllowUserToResizeColumns = false;
+            dgvRepository.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(236, 236, 236);
+            dgvRepository.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvRepository.BackgroundColor = Color.White;
+            dgvRepository.BorderStyle = BorderStyle.None;
+            dgvRepository.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(79, 101, 122);
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(79, 101, 122);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvRepository.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvRepository.ColumnHeadersHeight = 40;
+            dgvRepository.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Descricao, Linguagem, DataAtualizacao, DonoRepositorio });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(16, 158, 177);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvRepository.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvRepository.EnableHeadersVisualStyles = false;
+            dgvRepository.GridColor = Color.White;
+            dgvRepository.Location = new Point(12, 59);
+            dgvRepository.MultiSelect = false;
+            dgvRepository.Name = "dgvRepository";
+            dgvRepository.ReadOnly = true;
+            dgvRepository.RowHeadersVisible = false;
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvRepository.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dgvRepository.RowTemplate.Height = 50;
+            dgvRepository.RowTemplate.ReadOnly = true;
+            dgvRepository.RowTemplate.Resizable = DataGridViewTriState.False;
+            dgvRepository.ScrollBars = ScrollBars.Vertical;
+            dgvRepository.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvRepository.Size = new Size(1066, 604);
+            dgvRepository.TabIndex = 4;
+            // 
+            // btnDeleteAll
+            // 
+            btnDeleteAll.BackColor = Color.White;
+            btnDeleteAll.FlatStyle = FlatStyle.Flat;
+            btnDeleteAll.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDeleteAll.Location = new Point(958, 12);
+            btnDeleteAll.Name = "btnDeleteAll";
+            btnDeleteAll.Size = new Size(120, 41);
+            btnDeleteAll.TabIndex = 2;
+            btnDeleteAll.Text = "Deletar Todos";
+            btnDeleteAll.UseVisualStyleBackColor = false;
+            // 
+            // Id
+            // 
+            Id.HeaderText = "Id";
+            Id.Name = "Id";
+            Id.ReadOnly = true;
+            Id.Visible = false;
+            // 
+            // Nome
+            // 
+            Nome.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Nome.HeaderText = "Nome";
+            Nome.Name = "Nome";
+            Nome.ReadOnly = true;
+            Nome.Width = 88;
+            // 
+            // Descricao
+            // 
+            Descricao.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Descricao.HeaderText = "Descrição";
+            Descricao.Name = "Descricao";
+            Descricao.ReadOnly = true;
+            Descricao.Resizable = DataGridViewTriState.True;
+            // 
+            // Linguagem
+            // 
+            Linguagem.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            Linguagem.HeaderText = "Linguagem";
+            Linguagem.Name = "Linguagem";
+            Linguagem.ReadOnly = true;
+            Linguagem.Width = 137;
+            // 
+            // DataAtualizacao
+            // 
+            DataAtualizacao.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            DataAtualizacao.HeaderText = "DataAtualizacao";
+            DataAtualizacao.Name = "DataAtualizacao";
+            DataAtualizacao.ReadOnly = true;
+            DataAtualizacao.Width = 191;
+            // 
+            // DonoRepositorio
+            // 
+            DonoRepositorio.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            DonoRepositorio.HeaderText = "DonoRepositorio";
+            DonoRepositorio.Name = "DonoRepositorio";
+            DonoRepositorio.ReadOnly = true;
+            DonoRepositorio.Width = 182;
             // 
             // FormMyRepository
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(51, 51, 76);
-            ClientSize = new Size(800, 450);
-            Controls.Add(button1);
+            BackColor = Color.FromArgb(76, 76, 114);
+            ClientSize = new Size(1090, 675);
+            Controls.Add(dgvRepository);
+            Controls.Add(btnCreate);
+            Controls.Add(btnDeleteAll);
+            Controls.Add(textBox1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FormMyRepository";
             Text = "FormMyRepository";
+            Load += FormMyRepository_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvRepository).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
-
-        private Button button1;
+        private TextBox textBox1;
+        private Button btnCreate;
+        private DataGridView dgvRepository;
+        private Button btnDeleteAll;
+        private DataGridViewTextBoxColumn Id;
+        private DataGridViewTextBoxColumn Nome;
+        private DataGridViewTextBoxColumn Descricao;
+        private DataGridViewTextBoxColumn Linguagem;
+        private DataGridViewTextBoxColumn DataAtualizacao;
+        private DataGridViewTextBoxColumn DonoRepositorio;
     }
 }

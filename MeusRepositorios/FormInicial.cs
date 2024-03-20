@@ -9,8 +9,7 @@ namespace MeusRepositorios
 {
     public partial class FormInicial : Form
     {
-        private MyRepositoryService _myRepositoryService;
-        public List<MyRepository> myRepository { get; set; }
+        
 
         private Button currentButton;
         private Random random;
@@ -20,7 +19,6 @@ namespace MeusRepositorios
         public FormInicial()
         {
             InitializeComponent();
-            _myRepositoryService = new MyRepositoryService();
             this.Text = string.Empty;
             this.ControlBox = false;
             //this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
@@ -28,9 +26,8 @@ namespace MeusRepositorios
 
         private void FormInicial_Load(object sender, EventArgs e)
         {
-            //myRepository = _myRepositoryService.Get().ToList();
+            
         }
-
 
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         private extern static void ReleaseCapture();
