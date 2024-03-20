@@ -14,6 +14,11 @@ namespace MeusRepositorios.Service.Services
     {
         private readonly MyRepositoryRepository _myRepositoryRepository = new MyRepositoryRepository();
 
+        public bool DeleteAll()
+        {
+            return _myRepositoryRepository.DeleteAll();
+        }
+
         public IQueryable<MyRepository> Get()
         {
             return _myRepositoryRepository.Get();

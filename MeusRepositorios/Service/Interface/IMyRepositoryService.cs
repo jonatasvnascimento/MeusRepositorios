@@ -11,5 +11,6 @@ namespace MeusRepositorios.Service.Interface
     {
         IQueryable<MyRepository> Get();
         bool SaveOrUpdateMyRepository(MyRepository myRepository); 
+        bool DeleteAll();
     }
 }

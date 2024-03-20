@@ -57,6 +57,27 @@ namespace MeusRepositorios.App.Forms
         {
             FormNewRegister formNewRegister = new FormNewRegister();
             formNewRegister.ShowDialog();
+            LoadRepository();
+        }
+
+        private void btnDeleteAll_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Tem certeza que deseja deletar todos os registros?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                var retData = _myRepositoryService.DeleteAll();
+                if (retData)
+                {
+                    MessageBox.Show("Registro deletado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao deletar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                LoadRepository();
+            }
+
         }
     }
 }

@@ -33,7 +33,7 @@ namespace MeusRepositorios.App.Forms
             });
 
             if (retData)
-            {//messagebox formatado
+            {
                 MessageBox.Show("Registro salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }

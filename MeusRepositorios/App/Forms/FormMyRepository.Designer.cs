@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             textBox1 = new TextBox();
             btnCreate = new Button();
             dgvRepository = new DataGridView();
@@ -73,29 +73,29 @@
             dgvRepository.AllowUserToDeleteRows = false;
             dgvRepository.AllowUserToResizeColumns = false;
             dgvRepository.AllowUserToResizeRows = false;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(236, 236, 236);
-            dgvRepository.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(236, 236, 236);
+            dgvRepository.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             dgvRepository.BackgroundColor = Color.White;
             dgvRepository.BorderStyle = BorderStyle.None;
             dgvRepository.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(79, 101, 122);
-            dataGridViewCellStyle6.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(79, 101, 122);
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgvRepository.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(79, 101, 122);
+            dataGridViewCellStyle2.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(79, 101, 122);
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgvRepository.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgvRepository.ColumnHeadersHeight = 40;
             dgvRepository.Columns.AddRange(new DataGridViewColumn[] { Id, Nome, Descricao, Linguagem, DataAtualizacao, DonoRepositorio });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = SystemColors.Window;
-            dataGridViewCellStyle7.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle7.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(16, 158, 177);
-            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dgvRepository.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = SystemColors.Window;
+            dataGridViewCellStyle3.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(16, 158, 177);
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dgvRepository.DefaultCellStyle = dataGridViewCellStyle3;
             dgvRepository.EnableHeadersVisualStyles = false;
             dgvRepository.GridColor = Color.White;
             dgvRepository.Location = new Point(12, 59);
@@ -103,9 +103,9 @@
             dgvRepository.Name = "dgvRepository";
             dgvRepository.ReadOnly = true;
             dgvRepository.RowHeadersVisible = false;
-            dataGridViewCellStyle8.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.True;
-            dgvRepository.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Font = new Font("Century Gothic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
+            dgvRepository.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dgvRepository.RowTemplate.Height = 50;
             dgvRepository.RowTemplate.ReadOnly = true;
             dgvRepository.RowTemplate.Resizable = DataGridViewTriState.False;
@@ -172,6 +172,7 @@
             btnDeleteAll.TabIndex = 2;
             btnDeleteAll.Text = "Deletar Todos";
             btnDeleteAll.UseVisualStyleBackColor = false;
+            btnDeleteAll.Click += btnDeleteAll_Click;
             // 
             // FormMyRepository
             // 

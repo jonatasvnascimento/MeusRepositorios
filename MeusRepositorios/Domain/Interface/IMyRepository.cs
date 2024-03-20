@@ -9,6 +9,8 @@ namespace MeusRepositorios.Domain.Interface
 {
     public interface IMyRepository
     {
+        IQueryable<MyRepository> Get();
         bool SaveOrUpdateMyRepository(MyRepository myRepository);
+        bool DeleteAll();
     }
 }

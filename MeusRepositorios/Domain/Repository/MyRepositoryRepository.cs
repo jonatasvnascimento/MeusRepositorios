@@ -54,5 +54,30 @@ namespace MeusRepositorios.Domain.Repository
             }
             return result;
         }
+
+        public bool DeleteAll()
+        {
+            bool result = false;
+
+            using (var dbContextTransaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var allRecords = _context.MyRepository.ToList();
+
+                    _context.MyRepository.RemoveRange(allRecords);
+
+                    _context.SaveChanges();
+                    dbContextTransaction.Commit();
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    result = false;
+                }
+            }
+            return result;
+        }
     }
 }
