@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace MeusRepositorios.Domain.Interface
 {
-    public interface IMyRepository : IRepository<MyRepository>
+    public interface IMyRepository
     {
+        bool SaveOrUpdateMyRepository(MyRepository myRepository);
     }
 }

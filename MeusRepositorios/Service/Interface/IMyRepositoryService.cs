@@ -9,6 +9,7 @@ namespace MeusRepositorios.Service.Interface
 {
     public interface IMyRepositoryService
     {
-        IQueryable<MyRepository> Get(); 
+        IQueryable<MyRepository> Get();
+        bool SaveOrUpdateMyRepository(MyRepository myRepository); 
     }
 }

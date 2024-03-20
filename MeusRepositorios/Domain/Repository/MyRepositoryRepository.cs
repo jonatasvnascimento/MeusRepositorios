@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MeusRepositorios.Domain.Repository
 {
-    public class MyRepositoryRepository : IDisposable
+    public class MyRepositoryRepository : IDisposable, IMyRepository
     {
         AppDbContext _context = new AppDbContext();
 
@@ -21,6 +21,38 @@ namespace MeusRepositorios.Domain.Repository
         public void Dispose()
         {
             GC.SuppressFinalize(this);
+        }
+
+        public bool SaveOrUpdateMyRepository(MyRepository myRepository)
+        {
+            bool result = false;
+
+            using (var dbContextTransaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var exist = _context.MyRepository.Where(x => x.Id == myRepository.Id).FirstOrDefault();
+
+                    if (exist != null)
+                    {
+                        _context.MyRepository.Entry(exist).CurrentValues.SetValues(myRepository);
+                    }
+                    else
+                    {
+                        _context.MyRepository.Add(myRepository);
+                    }
+
+                    _context.SaveChanges();
+                    dbContextTransaction.Commit();
+                    result = true;
+                }
+                catch (Exception ex)
+                {
+                    dbContextTransaction.Rollback();
+                    result = false;
+                }
+            }
+            return result;
         }
     }
 }

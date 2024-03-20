@@ -18,5 +18,10 @@ namespace MeusRepositorios.Service.Services
         {
             return _myRepositoryRepository.Get();
         }
+
+        public bool SaveOrUpdateMyRepository(MyRepository myRepository)
+        {
+            return _myRepositoryRepository.SaveOrUpdateMyRepository(myRepository);
+        }
     }
 }

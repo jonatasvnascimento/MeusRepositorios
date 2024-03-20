@@ -199,6 +199,7 @@
             Controls.Add(panelTitleBar);
             Controls.Add(panelMenu);
             Name = "FormInicial";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += FormInicial_Load;
             panelMenu.ResumeLayout(false);
