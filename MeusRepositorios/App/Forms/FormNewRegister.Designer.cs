@@ -205,6 +205,7 @@
             Name = "FormNewRegister";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormNewRegister";
+            Load += FormNewRegister_Load;
             ResumeLayout(false);
             PerformLayout();
         }

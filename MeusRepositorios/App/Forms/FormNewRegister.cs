@@ -15,10 +15,20 @@ namespace MeusRepositorios.App.Forms
     public partial class FormNewRegister : Form
     {
         private MyRepositoryService _myRepositoryService;
-        public FormNewRegister()
+        private bool _isCreate { get; set;}
+        public FormNewRegister(bool isCreate = true)
         {
             InitializeComponent();
             _myRepositoryService = new MyRepositoryService();
+            _isCreate = isCreate;
+        }
+
+        private void FormNewRegister_Load(object sender, EventArgs e)
+        {
+            if (_isCreate)
+            {
+                dtDataAtualizacao.Enabled = false;
+            }
         }
 
         private void btnSalve_Click(object sender, EventArgs e)
@@ -47,5 +57,7 @@ namespace MeusRepositorios.App.Forms
         {
             this.Close();
         }
+
+        
     }
 }
