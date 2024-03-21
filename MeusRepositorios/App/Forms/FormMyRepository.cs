@@ -29,35 +29,41 @@ namespace MeusRepositorios.App.Forms
 
         private void LoadRepository(string find = "")
         {
-            if (!string.IsNullOrEmpty(find))
+            try
             {
-                myRepository = _myRepositoryService.Get().Where(x => x.Nome.ToUpper().Contains(find.ToUpper())).ToList();
+                if (!string.IsNullOrEmpty(find))
+                {
+                    myRepository = _myRepositoryService.Get().Where(x => x.Nome.ToUpper().Contains(find.ToUpper())).ToList();
+                }
+                else
+                {
+                    myRepository = _myRepositoryService.Get().ToList();
+                }
+
+                dgvRepository.Columns["Id"].DataPropertyName = "Id";
+                dgvRepository.Columns["Nome"].DataPropertyName = "Nome";
+                dgvRepository.Columns["Descricao"].DataPropertyName = "Descricao";
+                dgvRepository.Columns["Linguagem"].DataPropertyName = "Linguagem";
+                dgvRepository.Columns["DataAtualizacao"].DataPropertyName = "DataAtualizacao";
+                dgvRepository.Columns["DonoRepositorio"].DataPropertyName = "DonoRepositorio";
+
+                dgvRepository.AutoGenerateColumns = false;
+                dgvRepository.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+                dgvRepository.DataSource = myRepository.Select(x => new
+                {
+                    Id = x.Id,
+                    Nome = x.Nome,
+                    Descricao = x.Descricao,
+                    Linguagem = x.Linguagem,
+                    DataAtualizacao = x.DataAtualizacao,
+                    DonoRepositorio = x.DonoRepositorio
+                }).ToList();
             }
-            else
+            catch (Exception ex)
             {
-                myRepository = _myRepositoryService.Get().ToList();
+                MessageBox.Show($"{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            dgvRepository.Columns["Id"].DataPropertyName = "Id";
-            dgvRepository.Columns["Nome"].DataPropertyName = "Nome";
-            dgvRepository.Columns["Descricao"].DataPropertyName = "Descricao";
-            dgvRepository.Columns["Linguagem"].DataPropertyName = "Linguagem";
-            dgvRepository.Columns["DataAtualizacao"].DataPropertyName = "DataAtualizacao";
-            dgvRepository.Columns["DonoRepositorio"].DataPropertyName = "DonoRepositorio";
-
-            dgvRepository.AutoGenerateColumns = false;
-            dgvRepository.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-
-            dgvRepository.DataSource = myRepository.Select(x => new
-            {
-                Id = x.Id,
-                Nome = x.Nome,
-                Descricao = x.Descricao,
-                Linguagem = x.Linguagem,
-                DataAtualizacao = x.DataAtualizacao,
-                DonoRepositorio = x.DonoRepositorio
-            }).ToList();
-
         }
 
 
@@ -70,22 +76,28 @@ namespace MeusRepositorios.App.Forms
 
         private void btnDeleteAll_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Tem certeza que deseja deletar todos os registros?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-            if (result == DialogResult.Yes)
+            try
             {
-                var retData = _myRepositoryService.DeleteAll();
-                if (retData)
-                {
-                    MessageBox.Show("Registro deletado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Erro ao deletar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                LoadRepository();
-            }
+                DialogResult result = MessageBox.Show("Tem certeza que deseja deletar todos os registros?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+                if (result == DialogResult.Yes)
+                {
+                    var retData = _myRepositoryService.DeleteAll();
+                    if (retData)
+                    {
+                        MessageBox.Show("Registro deletado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    LoadRepository();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void tbxFind_TextChanged(object sender, EventArgs e)
@@ -95,36 +107,43 @@ namespace MeusRepositorios.App.Forms
 
         private void dgvRepository_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex == -1) return;
-
-            var idMyRepository = dgvRepository.Rows[e.RowIndex].Cells[0].Value;
-
-            if (e.RowIndex != -1 && e.ColumnIndex == 6)
+            try
             {
-                DialogResult result = MessageBox.Show("Tem certeza que deseja deletar o registro?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (e.RowIndex == -1) return;
 
-                if (result == DialogResult.Yes)
+                var idMyRepository = dgvRepository.Rows[e.RowIndex].Cells[0].Value;
+
+                if (e.RowIndex != -1 && e.ColumnIndex == 6)
                 {
-                    var retData = _myRepositoryService.DeleteById((int)idMyRepository);
+                    DialogResult result = MessageBox.Show("Tem certeza que deseja deletar o registro?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (retData)
+                    if (result == DialogResult.Yes)
                     {
-                        MessageBox.Show("Registro deletado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        LoadRepository();
+                        var retData = _myRepositoryService.DeleteById((int)idMyRepository);
+
+                        if (retData)
+                        {
+                            MessageBox.Show("Registro deletado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadRepository();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao deletar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Erro ao deletar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    return;
                 }
-                return;
+
+                FormNewRegister formNewRegister = new FormNewRegister(false, (int)idMyRepository);
+                formNewRegister.ShowDialog();
+                LoadRepository();
+
+                dgvRepository.Rows[e.RowIndex].Selected = true;
             }
-
-            FormNewRegister formNewRegister = new FormNewRegister(false, (int)idMyRepository);
-            formNewRegister.ShowDialog();
-            LoadRepository();
-
-            dgvRepository.Rows[e.RowIndex].Selected = true;
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -59,40 +59,47 @@ namespace MeusRepositorios.App.Forms
 
         private void btnSalve_Click(object sender, EventArgs e)
         {
-            MyRepository myRepository;
-            if (_isCreate)
+            try
             {
-                myRepository = new MyRepository()
+                MyRepository myRepository;
+                if (_isCreate)
                 {
-                    Nome = txtNome.Text,
-                    Descricao = txtDescricao.Text,
-                    Linguagem = txtLinguagem.Text,
-                    DataAtualizacao = dtDataAtualizacao.Value,
-                    DonoRepositorio = txtDonoRepositorio.Text,
-                    isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false
-                };
-            }
-            else
-            {
-                myRepository = MyRepository;
-                myRepository.Nome = txtNome.Text;
-                myRepository.Descricao = txtDescricao.Text;
-                myRepository.Linguagem = txtLinguagem.Text;
-                myRepository.DonoRepositorio = txtDonoRepositorio.Text;
-                myRepository.DataAtualizacao = DateTime.Now;
-                myRepository.isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false;
-            }
+                    myRepository = new MyRepository()
+                    {
+                        Nome = txtNome.Text,
+                        Descricao = txtDescricao.Text,
+                        Linguagem = txtLinguagem.Text,
+                        DataAtualizacao = dtDataAtualizacao.Value,
+                        DonoRepositorio = txtDonoRepositorio.Text,
+                        isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false
+                    };
+                }
+                else
+                {
+                    myRepository = MyRepository;
+                    myRepository.Nome = txtNome.Text;
+                    myRepository.Descricao = txtDescricao.Text;
+                    myRepository.Linguagem = txtLinguagem.Text;
+                    myRepository.DonoRepositorio = txtDonoRepositorio.Text;
+                    myRepository.DataAtualizacao = DateTime.Now;
+                    myRepository.isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false;
+                }
 
-            var retData = _myRepositoryService.SaveOrUpdateMyRepository(myRepository);
+                var retData = _myRepositoryService.SaveOrUpdateMyRepository(myRepository);
 
-            if (retData)
-            {
-                MessageBox.Show("Registro salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
+                if (retData)
+                {
+                    MessageBox.Show("Registro salvo com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao salvar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Erro ao salvar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -30,35 +30,41 @@ namespace MeusRepositorios.App.Forms
 
         private void LoadFavorites(string find = "")
         {
-            if (!string.IsNullOrEmpty(find))
+            try
             {
-                favorites = _favoriteService.Get().Where(x => x.Nome.ToUpper().Contains(find.ToUpper())).ToList();
+                if (!string.IsNullOrEmpty(find))
+                {
+                    favorites = _favoriteService.Get().Where(x => x.Nome.ToUpper().Contains(find.ToUpper())).ToList();
+                }
+                else
+                {
+                    favorites = _favoriteService.Get().ToList();
+                }
+
+                dgvRepository.Columns["Id"].DataPropertyName = "Id";
+                dgvRepository.Columns["Nome"].DataPropertyName = "Nome";
+                dgvRepository.Columns["Descricao"].DataPropertyName = "Descricao";
+                dgvRepository.Columns["Linguagem"].DataPropertyName = "Linguagem";
+                dgvRepository.Columns["DataAtualizacao"].DataPropertyName = "DataAtualizacao";
+                dgvRepository.Columns["DonoRepositorio"].DataPropertyName = "DonoRepositorio";
+
+                dgvRepository.AutoGenerateColumns = false;
+                dgvRepository.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+
+                dgvRepository.DataSource = favorites.Select(x => new
+                {
+                    Id = x.Id,
+                    Nome = x.Nome,
+                    Descricao = x.Descricao,
+                    Linguagem = x.Linguagem,
+                    DataAtualizacao = x.DataAtualizacao,
+                    DonoRepositorio = x.DonoRepositorio
+                }).ToList();
             }
-            else
+            catch (Exception ex)
             {
-                favorites = _favoriteService.Get().ToList();
+                MessageBox.Show($"{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            dgvRepository.Columns["Id"].DataPropertyName = "Id";
-            dgvRepository.Columns["Nome"].DataPropertyName = "Nome";
-            dgvRepository.Columns["Descricao"].DataPropertyName = "Descricao";
-            dgvRepository.Columns["Linguagem"].DataPropertyName = "Linguagem";
-            dgvRepository.Columns["DataAtualizacao"].DataPropertyName = "DataAtualizacao";
-            dgvRepository.Columns["DonoRepositorio"].DataPropertyName = "DonoRepositorio";
-
-            dgvRepository.AutoGenerateColumns = false;
-            dgvRepository.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-
-            dgvRepository.DataSource = favorites.Select(x => new
-            {
-                Id = x.Id,
-                Nome = x.Nome,
-                Descricao = x.Descricao,
-                Linguagem = x.Linguagem,
-                DataAtualizacao = x.DataAtualizacao,
-                DonoRepositorio = x.DonoRepositorio
-            }).ToList();
-
         }
 
         private void txtFind_TextChanged(object sender, EventArgs e)
