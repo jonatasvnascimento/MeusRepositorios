@@ -35,7 +35,6 @@
             txtFind = new TextBox();
             btnCreate = new Button();
             dgvRepository = new DataGridView();
-            btnDeleteAll = new Button();
             Id = new DataGridViewTextBoxColumn();
             Nome = new DataGridViewTextBoxColumn();
             Descricao = new DataGridViewTextBoxColumn();
@@ -43,6 +42,7 @@
             DataAtualizacao = new DataGridViewTextBoxColumn();
             DonoRepositorio = new DataGridViewTextBoxColumn();
             Acao = new DataGridViewImageColumn();
+            btnDeleteAll = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvRepository).BeginInit();
             SuspendLayout();
             // 
@@ -59,6 +59,7 @@
             // 
             // btnCreate
             // 
+            btnCreate.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnCreate.BackColor = Color.White;
             btnCreate.FlatStyle = FlatStyle.Flat;
             btnCreate.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
@@ -78,6 +79,7 @@
             dgvRepository.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(236, 236, 236);
             dgvRepository.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvRepository.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvRepository.BackgroundColor = Color.White;
             dgvRepository.BorderStyle = BorderStyle.None;
             dgvRepository.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -117,19 +119,6 @@
             dgvRepository.Size = new Size(1066, 604);
             dgvRepository.TabIndex = 4;
             dgvRepository.CellClick += dgvRepository_CellClick;
-            // 
-            // btnDeleteAll
-            // 
-            btnDeleteAll.BackColor = Color.White;
-            btnDeleteAll.FlatStyle = FlatStyle.Flat;
-            btnDeleteAll.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDeleteAll.Location = new Point(958, 12);
-            btnDeleteAll.Name = "btnDeleteAll";
-            btnDeleteAll.Size = new Size(120, 40);
-            btnDeleteAll.TabIndex = 2;
-            btnDeleteAll.Text = "Deletar Todos";
-            btnDeleteAll.UseVisualStyleBackColor = false;
-            btnDeleteAll.Click += btnDeleteAll_Click;
             // 
             // Id
             // 
@@ -188,6 +177,20 @@
             Acao.ReadOnly = true;
             Acao.Resizable = DataGridViewTriState.True;
             Acao.Width = 60;
+            // 
+            // btnDeleteAll
+            // 
+            btnDeleteAll.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDeleteAll.BackColor = Color.White;
+            btnDeleteAll.FlatStyle = FlatStyle.Flat;
+            btnDeleteAll.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDeleteAll.Location = new Point(958, 12);
+            btnDeleteAll.Name = "btnDeleteAll";
+            btnDeleteAll.Size = new Size(120, 40);
+            btnDeleteAll.TabIndex = 2;
+            btnDeleteAll.Text = "Deletar Todos";
+            btnDeleteAll.UseVisualStyleBackColor = false;
+            btnDeleteAll.Click += btnDeleteAll_Click;
             // 
             // FormMyRepository
             // 

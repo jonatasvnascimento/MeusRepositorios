@@ -51,6 +51,7 @@
             dgvRepository.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = Color.FromArgb(236, 236, 236);
             dgvRepository.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvRepository.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvRepository.BackgroundColor = Color.White;
             dgvRepository.BorderStyle = BorderStyle.None;
             dgvRepository.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
