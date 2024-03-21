@@ -74,3 +74,8 @@ Depois de instalado o SQL SERVER mudar a string de conexão para o banco correto
 Depois de configurado a conexão executar o script do banco
 
 dbRepository.sql
+
+![image](https://github.com/jonatasvnascimento/MeusRepositorios/assets/56093381/0c2421dc-5b45-4da8-bc53-4ec2beb55199)
+
+![image](https://github.com/jonatasvnascimento/MeusRepositorios/assets/56093381/2562dbc7-24ca-45e1-a7ba-4bf7255d5635)
+
