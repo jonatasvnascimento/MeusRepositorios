@@ -19,7 +19,7 @@ namespace MeusRepositorios.App.Forms
         private readonly FavoriteService _favoriteService;
         private bool _isCreate { get; set; }
         private int _idRepository { get; set; }
-        private MyRepository MyRepository { get; set; }
+        private MyRepository MyRepository { get; set; } = new MyRepository();
         public FormNewRegister(bool isCreate = true, int idRepository = -1)
         {
             InitializeComponent();
@@ -61,10 +61,9 @@ namespace MeusRepositorios.App.Forms
         {
             try
             {
-                MyRepository myRepository;
                 if (_isCreate)
                 {
-                    myRepository = new MyRepository()
+                    MyRepository = new MyRepository()
                     {
                         Nome = txtNome.Text,
                         Descricao = txtDescricao.Text,
@@ -76,16 +75,15 @@ namespace MeusRepositorios.App.Forms
                 }
                 else
                 {
-                    myRepository = MyRepository;
-                    myRepository.Nome = txtNome.Text;
-                    myRepository.Descricao = txtDescricao.Text;
-                    myRepository.Linguagem = txtLinguagem.Text;
-                    myRepository.DonoRepositorio = txtDonoRepositorio.Text;
-                    myRepository.DataAtualizacao = DateTime.Now;
-                    myRepository.isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false;
+                    MyRepository.Nome = txtNome.Text;
+                    MyRepository.Descricao = txtDescricao.Text;
+                    MyRepository.Linguagem = txtLinguagem.Text;
+                    MyRepository.DonoRepositorio = txtDonoRepositorio.Text;
+                    MyRepository.DataAtualizacao = DateTime.Now;
+                    MyRepository.isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false;
                 }
 
-                var retData = _myRepositoryService.SaveOrUpdateMyRepository(myRepository);
+                var retData = _myRepositoryService.SaveOrUpdateMyRepository(MyRepository);
 
                 if (retData)
                 {

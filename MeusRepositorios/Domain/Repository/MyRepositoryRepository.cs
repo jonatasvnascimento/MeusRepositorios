@@ -32,7 +32,7 @@ namespace MeusRepositorios.Domain.Repository
             {
                 try
                 {
-                    var existingMyRepository = _context.MyRepository.FirstOrDefault(x => x.Id == myRepository.Id);
+                    var existingMyRepository = _context.MyRepository.Where(x => x.Id == myRepository.Id).FirstOrDefault();
 
                     if (existingMyRepository != null)
                     {
@@ -45,7 +45,7 @@ namespace MeusRepositorios.Domain.Repository
 
                     _context.SaveChanges();
 
-                    var existingFavorite = _context.Favorite.FirstOrDefault(x => x.MyRepositoryId == myRepository.Id);
+                    var existingFavorite = _context.Favorite.Where(x => x.MyRepositoryId == myRepository.Id).FirstOrDefault();
 
                     if (!myRepository.isFavorite)
                     {
@@ -63,7 +63,12 @@ namespace MeusRepositorios.Domain.Repository
                         }
                         else
                         {
-                            _context.Entry(existingFavorite).CurrentValues.SetValues(favorite);
+                            _context.Favorite.Remove(existingFavorite);
+                            _context.SaveChanges();
+
+                            favorite.MyRepositoryId = myRepository.Id;
+                            _context.Favorite.Add(favorite);
+
                         }
                     }
 
