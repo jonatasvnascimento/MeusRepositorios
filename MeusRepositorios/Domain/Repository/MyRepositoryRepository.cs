@@ -43,6 +43,8 @@ namespace MeusRepositorios.Domain.Repository
                         _context.MyRepository.Add(myRepository);
                     }
 
+                    _context.SaveChanges();
+
                     var existingFavorite = _context.Favorite.FirstOrDefault(x => x.MyRepositoryId == myRepository.Id);
 
                     if (!myRepository.isFavorite)
@@ -54,14 +56,14 @@ namespace MeusRepositorios.Domain.Repository
                     }
                     else
                     {
-                        if (existingFavorite != null)
-                        {
-                            _context.Entry(existingFavorite).CurrentValues.SetValues(favorite);
-                        }
-                        else
+                        if (existingFavorite == null)
                         {
                             favorite.MyRepositoryId = myRepository.Id;
                             _context.Favorite.Add(favorite);
+                        }
+                        else
+                        {
+                            _context.Entry(existingFavorite).CurrentValues.SetValues(favorite);
                         }
                     }
 

@@ -181,7 +181,7 @@
             btnDeleteAll.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             btnDeleteAll.Location = new Point(958, 12);
             btnDeleteAll.Name = "btnDeleteAll";
-            btnDeleteAll.Size = new Size(120, 41);
+            btnDeleteAll.Size = new Size(120, 40);
             btnDeleteAll.TabIndex = 2;
             btnDeleteAll.Text = "Deletar Todos";
             btnDeleteAll.UseVisualStyleBackColor = false;

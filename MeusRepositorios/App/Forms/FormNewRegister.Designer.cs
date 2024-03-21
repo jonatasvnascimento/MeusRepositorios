@@ -50,9 +50,8 @@
             txtNome.BorderStyle = BorderStyle.FixedSingle;
             txtNome.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             txtNome.Location = new Point(12, 92);
-            txtNome.Multiline = true;
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(493, 40);
+            txtNome.Size = new Size(493, 35);
             txtNome.TabIndex = 2;
             // 
             // lblNome
@@ -114,9 +113,8 @@
             txtLinguagem.BorderStyle = BorderStyle.FixedSingle;
             txtLinguagem.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             txtLinguagem.Location = new Point(12, 300);
-            txtLinguagem.Multiline = true;
             txtLinguagem.Name = "txtLinguagem";
-            txtLinguagem.Size = new Size(493, 40);
+            txtLinguagem.Size = new Size(493, 35);
             txtLinguagem.TabIndex = 7;
             // 
             // lblDataAtualizacao
@@ -146,16 +144,17 @@
             txtDonoRepositorio.BorderStyle = BorderStyle.FixedSingle;
             txtDonoRepositorio.Font = new Font("Segoe UI", 15.75F, FontStyle.Regular, GraphicsUnit.Point);
             txtDonoRepositorio.Location = new Point(12, 366);
-            txtDonoRepositorio.Multiline = true;
             txtDonoRepositorio.Name = "txtDonoRepositorio";
-            txtDonoRepositorio.Size = new Size(493, 40);
+            txtDonoRepositorio.Size = new Size(493, 35);
             txtDonoRepositorio.TabIndex = 11;
             // 
             // btnSalve
             // 
-            btnSalve.BackColor = Color.White;
+            btnSalve.BackColor = Color.FromArgb(13, 124, 139);
+            btnSalve.FlatAppearance.BorderSize = 0;
             btnSalve.FlatStyle = FlatStyle.Flat;
             btnSalve.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnSalve.ForeColor = Color.White;
             btnSalve.Location = new Point(12, 473);
             btnSalve.Name = "btnSalve";
             btnSalve.Size = new Size(250, 40);
@@ -166,9 +165,11 @@
             // 
             // btnCancel
             // 
-            btnCancel.BackColor = Color.White;
+            btnCancel.BackColor = Color.FromArgb(234, 64, 72);
+            btnCancel.FlatAppearance.BorderSize = 0;
             btnCancel.FlatStyle = FlatStyle.Flat;
             btnCancel.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCancel.ForeColor = Color.White;
             btnCancel.Location = new Point(268, 473);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(237, 40);
