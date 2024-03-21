@@ -43,5 +43,9 @@ namespace MeusRepositorios.Service.Services
 
             return _myRepositoryRepository.SaveOrUpdateMyRepository(myRepository, favoriteOBJ);
         }
+        public bool DeleteById(int idRepository)
+        {
+            return _myRepositoryRepository.DeleteById(idRepository);
+        }
     }
 }

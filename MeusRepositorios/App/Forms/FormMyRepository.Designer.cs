@@ -116,7 +116,7 @@
             dgvRepository.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvRepository.Size = new Size(1066, 604);
             dgvRepository.TabIndex = 4;
-            dgvRepository.CellDoubleClick += dgvRepository_CellDoubleClick;
+            dgvRepository.CellClick += dgvRepository_CellClick;
             // 
             // Id
             // 

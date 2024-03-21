@@ -10,9 +10,10 @@ namespace MeusRepositorios.Domain.Interface
     public interface IMyRepository
     {
         IQueryable<MyRepository> Get();
+        MyRepository GetById(int idRepository);
         bool SaveOrUpdateMyRepository(MyRepository myRepository, Favorite favorite);
         bool DeleteAll();
-        MyRepository GetById(int idRepository);
+        bool DeleteById(int idRepository);
 
     }
 }

@@ -92,17 +92,38 @@ namespace MeusRepositorios.App.Forms
             LoadRepository(txtFind.Text);
         }
 
-        private void dgvRepository_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvRepository_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex == -1) return;
 
-            var t = dgvRepository.Rows[e.RowIndex].Cells[0].Value;
+            var idMyRepository = dgvRepository.Rows[e.RowIndex].Cells[0].Value;
 
-            int idRepository = 1;
+            if (e.RowIndex != -1 && e.ColumnIndex == 6)
+            {
+                DialogResult result = MessageBox.Show("Tem certeza que deseja deletar o registro?", "Confirmação de Exclusão", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-            FormNewRegister formNewRegister = new FormNewRegister(false, idRepository);
+                if (result == DialogResult.Yes)
+                {
+                    var retData = _myRepositoryService.DeleteById((int)idMyRepository);
+
+                    if (retData)
+                    {
+                        MessageBox.Show("Registro deletado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadRepository();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao deletar o registro!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                return;
+            }
+
+            FormNewRegister formNewRegister = new FormNewRegister(false, (int)idMyRepository);
             formNewRegister.ShowDialog();
             LoadRepository();
+
+            dgvRepository.Rows[e.RowIndex].Selected = true;
         }
     }
 }

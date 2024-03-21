@@ -1,6 +1,7 @@
 ﻿using MeusRepositorios.Domain.Context;
 using MeusRepositorios.Domain.Interface;
 using MeusRepositorios.Domain.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace MeusRepositorios.Domain.Repository
 
         public IQueryable<MyRepository> Get()
         {
-            return _context.MyRepository.AsQueryable();
+            return _context.MyRepository.AsQueryable().AsNoTracking();
         }
 
         public void Dispose()
@@ -31,20 +32,21 @@ namespace MeusRepositorios.Domain.Repository
             {
                 try
                 {
-                    var existMyRepository = _context.MyRepository.FirstOrDefault(x => x.Id == myRepository.Id);
+                    var existingMyRepository = _context.MyRepository.FirstOrDefault(x => x.Id == myRepository.Id);
 
-                    if (existMyRepository != null)
+                    if (existingMyRepository != null)
                     {
-                        _context.Entry(existMyRepository).CurrentValues.SetValues(myRepository);
+                        _context.Entry(existingMyRepository).CurrentValues.SetValues(myRepository);
                     }
                     else
                     {
                         _context.MyRepository.Add(myRepository);
                     }
 
+                    var existingFavorite = _context.Favorite.FirstOrDefault(x => x.MyRepositoryId == myRepository.Id);
+
                     if (!myRepository.isFavorite)
                     {
-                        var existingFavorite = _context.Favorite.FirstOrDefault(x => x.MyRepositoryId == myRepository.Id);
                         if (existingFavorite != null)
                         {
                             _context.Favorite.Remove(existingFavorite);
@@ -52,7 +54,6 @@ namespace MeusRepositorios.Domain.Repository
                     }
                     else
                     {
-                        var existingFavorite = _context.Favorite.FirstOrDefault(x => x.MyRepositoryId == myRepository.Id);
                         if (existingFavorite != null)
                         {
                             _context.Entry(existingFavorite).CurrentValues.SetValues(favorite);
@@ -76,7 +77,6 @@ namespace MeusRepositorios.Domain.Repository
             }
             return result;
         }
-
 
         public bool DeleteAll()
         {
@@ -108,6 +108,40 @@ namespace MeusRepositorios.Domain.Repository
         public MyRepository GetById(int idRepository)
         {
             return _context.MyRepository.Where(x => x.Id == idRepository).FirstOrDefault();
+        }
+
+        public bool DeleteById(int idRepository)
+        {
+            bool result = false;
+
+            using (var dbContextTransaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    var allRecordsMyRepository = _context.MyRepository.Where(x => x.Id == idRepository).FirstOrDefault();
+                    var allRecordsFavorite = _context.Favorite.Where(x => x.MyRepositoryId == idRepository).FirstOrDefault();
+
+                    if (allRecordsMyRepository != null)
+                    {
+                        _context.MyRepository.Remove(allRecordsMyRepository);
+                    }
+
+                    if (allRecordsFavorite != null)
+                    {
+                        _context.Favorite.Remove(allRecordsFavorite);
+                    }
+
+                    _context.SaveChanges();
+                    dbContextTransaction.Commit();
+                    result = true;
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
+                    result = false;
+                }
+            }
+            return result;
         }
     }
 }

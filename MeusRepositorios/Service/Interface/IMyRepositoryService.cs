@@ -10,8 +10,9 @@ namespace MeusRepositorios.Service.Interface
     public interface IMyRepositoryService
     {
         IQueryable<MyRepository> Get();
+        MyRepository GetById(int idRepository);
         bool SaveOrUpdateMyRepository(MyRepository myRepository); 
         bool DeleteAll();
-        MyRepository GetById(int idRepository);
+        bool DeleteById(int idRepository);
     }
 }

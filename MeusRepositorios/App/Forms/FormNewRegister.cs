@@ -37,6 +37,7 @@ namespace MeusRepositorios.App.Forms
             }
             else
             {
+                dtDataAtualizacao.Enabled = false;
                 LoadRepository();
             }
         }
@@ -74,8 +75,12 @@ namespace MeusRepositorios.App.Forms
             else
             {
                 myRepository = MyRepository;
-                myRepository.isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false;
+                myRepository.Nome = txtNome.Text;
+                myRepository.Descricao = txtDescricao.Text;
+                myRepository.Linguagem = txtLinguagem.Text;
+                myRepository.DonoRepositorio = txtDonoRepositorio.Text;
                 myRepository.DataAtualizacao = DateTime.Now;
+                myRepository.isFavorite = cbFavorito.CheckState == CheckState.Checked ? true : false;
             }
 
             var retData = _myRepositoryService.SaveOrUpdateMyRepository(myRepository);
