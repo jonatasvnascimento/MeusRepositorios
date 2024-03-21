@@ -35,6 +35,7 @@
             txtFind = new TextBox();
             btnCreate = new Button();
             dgvRepository = new DataGridView();
+            btnDeleteAll = new Button();
             Id = new DataGridViewTextBoxColumn();
             Nome = new DataGridViewTextBoxColumn();
             Descricao = new DataGridViewTextBoxColumn();
@@ -42,7 +43,6 @@
             DataAtualizacao = new DataGridViewTextBoxColumn();
             DonoRepositorio = new DataGridViewTextBoxColumn();
             Acao = new DataGridViewImageColumn();
-            btnDeleteAll = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvRepository).BeginInit();
             SuspendLayout();
             // 
@@ -120,12 +120,27 @@
             dgvRepository.TabIndex = 4;
             dgvRepository.CellClick += dgvRepository_CellClick;
             // 
+            // btnDeleteAll
+            // 
+            btnDeleteAll.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnDeleteAll.BackColor = Color.White;
+            btnDeleteAll.FlatStyle = FlatStyle.Flat;
+            btnDeleteAll.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnDeleteAll.Location = new Point(958, 12);
+            btnDeleteAll.Name = "btnDeleteAll";
+            btnDeleteAll.Size = new Size(120, 40);
+            btnDeleteAll.TabIndex = 2;
+            btnDeleteAll.Text = "Deletar Todos";
+            btnDeleteAll.UseVisualStyleBackColor = false;
+            btnDeleteAll.Click += btnDeleteAll_Click;
+            // 
             // Id
             // 
             Id.HeaderText = "Id";
             Id.Name = "Id";
             Id.ReadOnly = true;
             Id.Visible = false;
+            Id.Width = 200;
             // 
             // Nome
             // 
@@ -161,11 +176,11 @@
             // 
             // DonoRepositorio
             // 
-            DonoRepositorio.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            DonoRepositorio.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             DonoRepositorio.HeaderText = "DonoRepositorio";
             DonoRepositorio.Name = "DonoRepositorio";
             DonoRepositorio.ReadOnly = true;
-            DonoRepositorio.Width = 182;
+            DonoRepositorio.Width = 200;
             // 
             // Acao
             // 
@@ -177,20 +192,6 @@
             Acao.ReadOnly = true;
             Acao.Resizable = DataGridViewTriState.True;
             Acao.Width = 60;
-            // 
-            // btnDeleteAll
-            // 
-            btnDeleteAll.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnDeleteAll.BackColor = Color.White;
-            btnDeleteAll.FlatStyle = FlatStyle.Flat;
-            btnDeleteAll.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnDeleteAll.Location = new Point(958, 12);
-            btnDeleteAll.Name = "btnDeleteAll";
-            btnDeleteAll.Size = new Size(120, 40);
-            btnDeleteAll.TabIndex = 2;
-            btnDeleteAll.Text = "Deletar Todos";
-            btnDeleteAll.UseVisualStyleBackColor = false;
-            btnDeleteAll.Click += btnDeleteAll_Click;
             // 
             // FormMyRepository
             // 
